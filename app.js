@@ -264,6 +264,42 @@ console.log(lastElement);
 
 // c.	Dinamiškai su JS kiekvienoje gyvūnų kategorijoje po “PATINKA” pridėkite dar vieną li elementą “NEPATINKA”, kurį paspaudus atitinkamoje sekcijoje būtų nuimta klasė like
 
+let nepatinka = document.querySelectorAll('.animals > ul > .like-button');
+nepatinka.forEach(function (element) {
+    let naujas = document.createElement('li');
+    naujas.innerText = 'NEPATINKA';
+    element.appendChild(naujas);
+    naujas.addEventListener('click', function () {
+        element.classList.remove('like');
+    });
+});
+console.log(nepatinka);
+
 
 // d.	Dinamiškai su JS sukurkite naują mygtukų grupę HEADER 3 naudojant analogišką html tagų struktūrą kaip ir HEADER 1 ir HEADER 2. Pirmas mygtukas vadintųsi, “Pabraukti H1 tagą”, o antras “Nepabraukti H1 tagą”. Mygtukai turi daryti tai kas ant jų parašyta
 
+let fieldSet = document.createElement('fieldset');
+let legend = document.createElement('legend');
+legend.innerText = 'HEADER 3';
+fieldSet.appendChild(legend);
+
+let mygtukas1 = document.createElement('button');
+mygtukas1.innerText = 'Pabraukti H1 tagą';
+fieldSet.appendChild(mygtukas1);
+
+let mygtukas2 = document.createElement('button');
+mygtukas2.innerText = '“Nepabraukti H1 tagą';
+fieldSet.appendChild(mygtukas2);
+
+console.log(fieldSet);
+
+let kontaktai = document.getElementById('contacts');
+// atsiranda mygtukas prieš kontaktus
+kontaktai.before(fieldSet);
+
+mygtukas1.addEventListener('click', function() {
+    h1DOM.style.textDecoration = 'underline';
+});
+mygtukas2.addEventListener('click', function() {
+    h1DOM.style.textDecoration = null;
+})
