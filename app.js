@@ -51,20 +51,27 @@ console.log('h2 tagų, kurie neturi klasės first: ', firstH2());
 // c.	Visus h2 tagus nuspalvinti šviesiai mėlynai
 
 h2DOM = document.querySelectorAll('h2');
-h2DOM.forEach(element => element.style.color = 'lightblue');
+h2DOM.forEach(function (element) {
+    element.style.color = 'lightblue'
+});
 
 console.log(h2DOM);
 
 // d.	Tagų, kurie yra div su klase prices, viduje esantiems h2 tagams pridėti klasę price-tag;
 
 let divDOM = document.querySelectorAll('div.prices');
-divDOM.forEach(element => (element.classList.add('price-tag')));
+divDOM.forEach(function (element) {
+    element.classList.add('price-tag');
+});
 
 console.log(divDOM);
 
 // e.	Pabraukti visus tagus su klase new;
 let newDOM = document.querySelectorAll('.new');
-newDOM.forEach(element => (element.style.textDecoration = 'underline'));
+newDOM.forEach(function (element) {
+    element.style.textDecoration = 'underline'
+});
+
 console.log(newDOM);
 
 // f.	Suskaičiuoti kiek yra gyvūnų kategorijų ir žirafų (jos yra ul tagai);
@@ -81,8 +88,13 @@ console.log('kiek yra zirafu: ', zirafos);
 
 let ulDOM = document.querySelectorAll('ul');
 
-ulDOM.forEach(element => element.style.border = '5px solid blue');
-ulDOM.forEach(element => element.style.padding = '15px 50px 15px 50px');
+ulDOM.forEach(function (element) {
+    element.style.border = '5px solid blue'
+});
+
+ulDOM.forEach(function (element) {
+    element.style.padding = '15px 50px 15px 50px'
+});
 console.log(ulDOM);
 
 // h.	Suskaičiuoti kiek yra naujų gyvūnų (su klase new);
@@ -93,10 +105,22 @@ console.log('kiek yra naujų gyvūnų (su klase new): ', naujiGyvunai);
 
 // i.	Suskaičiuoti atskirai kiek yra naujų gyvūnų kiekvienoje kategorijoje;
 
-
 let atskiraiGyvunai = document.querySelectorAll('.animals .new').length;
 
 console.log('atskirai kiek yra naujų gyvūnų kiekvienoje kategorijoje: ', atskiraiGyvunai);
+
+let zirafuKiekis = document.querySelectorAll('#zirafos .new').length;
+console.log('nauju zirafu kiekis: ', zirafuKiekis);
+
+let plesrunuKiekis = document.querySelectorAll('#plesrunai .new').length;
+console.log('nauju plesrunu kiekis: ', plesrunuKiekis);
+
+let gyvaciuKiekis = document.querySelectorAll('#gyvates .new').length;
+console.log('nauju gyvaciu kiekis: ', gyvaciuKiekis);
+
+let zoliaedziuKiekis = document.querySelectorAll('#zoliaedziai .new').length;
+console.log('nauju zoliaedziu kiekis: ', zoliaedziuKiekis);
+
 // ------------------------------------------------------------------------
 // Elementų events
 // a.	Padaryti tai ką liepia mygtukai Header1 sekcijoje;
@@ -187,56 +211,56 @@ header2Font.addEventListener('click', function () {
 // -----------------------------------------------------------------------
 // 4.	Elementų grupių events
 // a.	Padaryti, kad dukartus paspaudus ant naujų gyvūnų jie nusispalvintu raudonai https://developer.mozilla.org/en-US/docs/Web/API/Element/dblclick_event
+
 newDOM = document.querySelectorAll('.new');
-newDOM.forEach(element => element.addEventListener('dblclick', function () {
-    element.style.color = 'red'
-}));
+newDOM.forEach(function (element) {
+    element.addEventListener('dbclick', function () {
+        element.style.color = 'red';
+    });
+});
 
 // b.	Padaryti, kad paspaudus ant gyvūno jis būtų atvaizduojamas 130% didesniu fonto dydžiu. “PATINKA” tas neturi galioti.
 let didesniGyvunai = document.querySelectorAll('.animals> ul > li:not(.like-button)');
 
-didesniGyvunai.forEach(element => element.addEventListener('click', function () {
-    element.style.fontSize = '130%';
-}));
+didesniGyvunai.forEach(function (element) {
+    element.addEventListener('click', function () {
+        element.style.fontSize = '130%';
+    });
+})
 
 // c.	Padaryti, kad paspaudus ant “PATINKA”, atitinkamai sekcijai būtų priskirta klasė like;
 
 let patinka = document.querySelectorAll('.animals > ul');
 console.log(patinka);
 
-patinka.forEach(element => element.addEventListener('click', function () {
-    element.classList.add('like');
-}));
+patinka.forEach(function (element) {
+    element.addEventListener('click', function () {
+        element.classList.add('like');
+    });
+});
 
 // 5.	Dinaminis elementų kūrimas (su createElement)
 
 // a.	Dinamiškai su JS pridėti naują kainą “Senjorai tik: 1.99 eur”;
-// sukuriamas elementas
+
 let newTag = document.createElement('h2');
-// sukuriamas tesktas
-let newText = document.createTextNode('“Senjorai tik: 1.99 eur”');
-// teksta idedu i elementa
-newTag.appendChild(newText);
-// randu skyriu kur idesiu elementa su tekstu
+newTag.innerText = 'Senjorai tik: 1.99 eur';
 prices = document.querySelector('.prices');
-// idedu taga i skyriu
 prices.appendChild(newTag);
 
 // b.	Dinamiškai su JS Pridėti naują kainą “Senjorų grupė iki 10: tik 5.99 eur” Padaryti, kad pridėtas elementas turėtų klasę new ir ant jo paklikinus jis pasidarytų žalias;
 let secondTag = document.createElement('h2');
-let secondText = document.createTextNode('Senjorų grupė iki 10: tik 5.99 eu');
-secondTag.appendChild(secondText);
+secondTag.innerText = 'Senjorų grupė iki 10: tik 5.99 eu';
 prices = document.querySelector('.prices');
 prices.appendChild(secondTag);
 console.log(prices);
 
 let lastElement = document.querySelector('h2:last-child ');
-// lastElement.classList.add('new');
+lastElement.classList.add('new');
 lastElement.addEventListener('click', function () {
     lastElement.style.color = 'green';
 })
 console.log(lastElement);
-
 
 // c.	Dinamiškai su JS kiekvienoje gyvūnų kategorijoje po “PATINKA” pridėkite dar vieną li elementą “NEPATINKA”, kurį paspaudus atitinkamoje sekcijoje būtų nuimta klasė like
 
